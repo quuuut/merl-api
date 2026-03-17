@@ -1,0 +1,14 @@
+services:
+  merl-api:
+    container_name: merl-api
+    build:
+      context: .
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      - PORT=${PORT}
+      - HOST=${HOST}
+    dns:
+      - ${DNS_1}
+      - ${DNS_2}
+    restart: unless-stopped
