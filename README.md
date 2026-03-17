@@ -35,5 +35,8 @@ curl http://localhost:4141/v1/chat/completions \
   }'
 ```
 
+## Contributing
+Contributions are welcome! Please feel free to open a PR in order to fix or add features that you would like!
+
 ## License
 Distributed under the Apache License 2.0. See LICENSE for more information.
