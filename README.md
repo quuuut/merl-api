@@ -15,7 +15,7 @@ The easiest way to get the API running is via Docker Compose. This handles the b
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/quuuut/merl-api.git](https://github.com/quuuut/merl-api.git
+   git clone https://github.com/quuuut/merl-api.git
    cd merl-api
    ```
 2. **Start the container:**
