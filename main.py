@@ -13,7 +13,7 @@ from merl import ask, init
 session = requests.Session()
 
 data = init(session)
-etag = data.get("etag", None)
+etag = data.get("eTag", None)
 
 if __name__ == "__main__":
     while True:
@@ -37,7 +37,7 @@ else:
 
     @app.post("/v1/chat/completions", response_class=JSONResponse)
     async def completions(request: Request, body=Body(...)):
-        global etag, session
+        global etag, session, data
         try:
             question = body["messages"][-1]["content"]
         except KeyError:
@@ -48,11 +48,13 @@ else:
 
         response, etag, usage = ask(session, data, etag, question)
         if response is None:
-            a = init(session)
-            etag = a.get("eTag", None)
+            data = init(session)
+            etag = data.get("eTag", None)
+            response, etag, usage = ask(session, data, etag, question)
+        if response is None:
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail="Please try again",
+                detail="Session re-initialization failed. Please try again later.",
             )
         elif response == 413:
             raise HTTPException(

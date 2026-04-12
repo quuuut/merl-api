@@ -43,7 +43,7 @@ def init(session):
             )
         return data
     except Exception as e:
-        input(f"An error occurred: {e} press enter to continue...")
+        print(f"An error occurred during init: {e}")
         return None
 
 
