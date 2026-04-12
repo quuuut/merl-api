@@ -13,7 +13,7 @@ from merl import ask, init
 session = requests.Session()
 
 data = init(session)
-etag = data.get("eTag", None)
+etag = data.get("etag", None)
 
 if __name__ == "__main__":
     while True:
@@ -49,7 +49,7 @@ else:
         response, etag, usage = ask(session, data, etag, question)
         if response is None:
             data = init(session)
-            etag = data.get("eTag", None)
+            etag = data.get("etag", None)
             response, etag, usage = ask(session, data, etag, question)
         if response is None:
             raise HTTPException(
