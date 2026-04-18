@@ -121,7 +121,7 @@ else:
                 "object": "chat.completion",
                 "choices": [
                     {
-                        "text": response,
+                        "message": {"role": "assistant", "content": response},
                         "finish_reason": "stop",
                         "index": 0
                     }
