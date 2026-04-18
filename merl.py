@@ -49,7 +49,6 @@ def init(session):
 
 def ask(session, json, etag, question):
     try:
-        # print(json)
         if len(question) >= 5000:
             return 413, etag, None
         url = "https://xsva.support.xboxlive.com/chat"
@@ -80,5 +79,4 @@ def ask(session, json, etag, question):
         return combined.strip(), response["eTag"], response["metadata"]["chatLlmCall"]
     except Exception as e:
         print(f"An error occurred: {e}")
-        # input(f"{payload}An error occurred: {e} press enter to continue...")
         return None, etag, None
