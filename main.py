@@ -42,7 +42,7 @@ else:
             question = body["messages"][-1]["content"]
         except KeyError:
             raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
+                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
                 detail="Could not find messages array",
             )
 
@@ -121,8 +121,9 @@ else:
                 "object": "chat.completion",
                 "choices": [
                     {
-                        "text": response,
+                        "message": {"role": "assistant", "content": response},
                         "finish_reason": "stop",
+                        "index": 0
                     }
                 ],
                 "usage": {
